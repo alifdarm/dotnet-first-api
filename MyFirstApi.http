@@ -1,0 +1,29 @@
+@MyFirstApi_HostAddress = http://localhost:5018
+
+GET {{MyFirstApi_HostAddress}}/api/v1/weather/forecast
+Accept: application/json
+
+###
+
+GET {{MyFirstApi_HostAddress}}/api/v1/todos
+Accept: application/json
+
+###
+
+POST {{MyFirstApi_HostAddress}}/api/v1/todos
+Content-Type: application/json
+
+{
+	"title": "Review refactored API"
+}
+
+###
+
+PATCH {{MyFirstApi_HostAddress}}/api/v1/todos/2/status
+Content-Type: application/json
+
+{
+	"isCompleted": true
+}
+
+###
