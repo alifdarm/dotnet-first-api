@@ -1,4 +1,5 @@
 using MyFirstApi.Api.Endpoints;
+using MyFirstApi.Api.Middleware;
 using MyFirstApi.Api.Options;
 using MyFirstApi.Application;
 using MyFirstApi.Infrastructure;
@@ -25,6 +26,7 @@ if (app.Environment.IsDevelopment())
     app.MapOpenApi();
 }
 
+app.UseApiMiddleware();
 app.UseHttpsRedirection();
 
 app.MapWeatherEndpoints();
