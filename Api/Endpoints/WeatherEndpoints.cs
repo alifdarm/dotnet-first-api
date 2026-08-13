@@ -17,6 +17,13 @@ public static class WeatherEndpoints
         })
             .WithName("GetWeatherForecast");
 
+        group.MapFallback(async context =>
+        {
+            context.Response.StatusCode = 404;
+            await context.Response.WriteAsync("The requested resource was not found.");
+        })
+            .WithName("WeatherFallback");
+
         return app;
     }
 }
