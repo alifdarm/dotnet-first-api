@@ -1,3 +1,4 @@
+using MyFirstApi.Api.Filters;
 using MyFirstApi.Application.Abstractions;
 using MyFirstApi.Application.Contracts;
 
@@ -26,6 +27,8 @@ public static class TodoEndpoints
             var created = await todoService.CreateAsync(request, cancellationToken);
             return Results.Created($"/api/v1/todos/{created.Id}", created);
         })
+        .AddEndpointFilter<TodoCreateRequestValidationFilter>()
+        .ProducesValidationProblem(StatusCodes.Status400BadRequest)
         .WithName("CreateTodo");
 
         group.MapPatch("/{id:int}/status", async (int id, TodoStatusUpdateRequest request, ITodoService todoService, CancellationToken cancellationToken) =>
